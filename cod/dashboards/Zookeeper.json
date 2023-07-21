@@ -1,0 +1,933 @@
+{
+  "annotations": {
+    "list": [
+      {
+        "builtIn": 1,
+        "datasource": {
+          "type": "grafana"
+        },
+        "enable": true,
+        "hide": true,
+        "iconColor": "rgba(0, 211, 255, 1)",
+        "name": "Annotations & Alerts",
+        "type": "dashboard"
+      }
+    ]
+  },
+  "editable": true,
+  "fiscalYearStartMonth": 0,
+  "graphTooltip": 0,
+  "id": 5,
+  "links": [],
+  "liveNow": false,
+  "panels": [
+    {
+      "collapsed": false,
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 0
+      },
+      "id": 18,
+      "panels": [],
+      "title": "Status",
+      "type": "row"
+    },
+    {
+      "datasource": {
+        "type": "foursquare-clouderamanager-datasource",
+        "uid": "PCBD112296461D5A7"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "continuous-GrYlRd"
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 7,
+        "w": 12,
+        "x": 0,
+        "y": 1
+      },
+      "id": 5,
+      "options": {
+        "displayMode": "lcd",
+        "minVizHeight": 10,
+        "minVizWidth": 0,
+        "orientation": "horizontal",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showUnfilled": true,
+        "valueMode": "color"
+      },
+      "pluginVersion": "9.5.3",
+      "targets": [
+        {
+          "datasource": {
+            "type": "foursquare-clouderamanager-datasource",
+            "uid": "PCBD112296461D5A7"
+          },
+          "refId": "A",
+          "target": "select  health_concerning_rate * 100 as \"concerning health\", health_bad_rate * 100 as \"bad health\", health_disabled_rate * 100 as \"disabled health\", health_unknown_rate * 100 as \"unknown health\" where entityName RLIKE \"zookeeper-[a-z 0-9]*\""
+        }
+      ],
+      "title": "Health",
+      "type": "bargauge"
+    },
+    {
+      "datasource": {
+        "type": "foursquare-clouderamanager-datasource",
+        "uid": "PCBD112296461D5A7"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "continuous-GrYlRd"
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 7,
+        "w": 12,
+        "x": 12,
+        "y": 1
+      },
+      "id": 6,
+      "options": {
+        "displayMode": "gradient",
+        "minVizHeight": 10,
+        "minVizWidth": 0,
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showUnfilled": true,
+        "valueMode": "color"
+      },
+      "pluginVersion": "9.5.3",
+      "targets": [
+        {
+          "datasource": {
+            "type": "foursquare-clouderamanager-datasource",
+            "uid": "PCBD112296461D5A7"
+          },
+          "refId": "A",
+          "target": "select integral(alerts_rate), integral(events_critical_rate) where category=role and serviceName RLIKE \"zookeeper-[a-z 0-9]*\""
+        }
+      ],
+      "title": "Critical Events and Alerts",
+      "type": "bargauge"
+    },
+    {
+      "datasource": {
+        "type": "foursquare-clouderamanager-datasource",
+        "uid": "PCBD112296461D5A7"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              }
+            ]
+          },
+          "unit": "ms"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 7,
+        "w": 12,
+        "x": 0,
+        "y": 8
+      },
+      "id": 4,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "area",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "textMode": "auto"
+      },
+      "pluginVersion": "9.5.3",
+      "targets": [
+        {
+          "datasource": {
+            "type": "foursquare-clouderamanager-datasource",
+            "uid": "PCBD112296461D5A7"
+          },
+          "refId": "A",
+          "target": "select canary_duration where entityName RLIKE \"zookeeper-[a-z 0-9]*\""
+        }
+      ],
+      "title": "Canary Duration",
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "foursquare-clouderamanager-datasource",
+        "uid": "PCBD112296461D5A7"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          },
+          "unit": "percent"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 7,
+        "w": 12,
+        "x": 12,
+        "y": 8
+      },
+      "id": 3,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "area",
+        "justifyMode": "auto",
+        "orientation": "horizontal",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "textMode": "auto"
+      },
+      "pluginVersion": "9.5.3",
+      "targets": [
+        {
+          "datasource": {
+            "type": "foursquare-clouderamanager-datasource",
+            "uid": "PCBD112296461D5A7"
+          },
+          "refId": "A",
+          "target": "select cpu_user_rate where category=ROLE and serviceName RLIKE \"zookeeper-[a-z 0-9]*\""
+        },
+        {
+          "datasource": {
+            "type": "foursquare-clouderamanager-datasource",
+            "uid": "PCBD112296461D5A7"
+          },
+          "hide": false,
+          "refId": "B",
+          "target": "select cpu_system_rate  where category=ROLE and serviceName RLIKE \"zookeeper-[a-z 0-9]*\""
+        }
+      ],
+      "title": "CPU Cores Used",
+      "type": "stat"
+    },
+    {
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 15
+      },
+      "id": 19,
+      "title": "Server",
+      "type": "row"
+    },
+    {
+      "datasource": {
+        "type": "foursquare-clouderamanager-datasource",
+        "uid": "PCBD112296461D5A7"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              }
+            ]
+          },
+          "unit": "short"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 5,
+        "w": 4,
+        "x": 0,
+        "y": 16
+      },
+      "id": 7,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "area",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "textMode": "auto"
+      },
+      "pluginVersion": "9.5.3",
+      "targets": [
+        {
+          "datasource": {
+            "type": "foursquare-clouderamanager-datasource",
+            "uid": "PCBD112296461D5A7"
+          },
+          "refId": "A",
+          "target": "select total_open_connections_across_servers where entityName RLIKE \"zookeeper-[a-z 0-9]*\""
+        }
+      ],
+      "title": "Total Open Connections Across Servers",
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "foursquare-clouderamanager-datasource",
+        "uid": "PCBD112296461D5A7"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              }
+            ]
+          },
+          "unit": "short"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 5,
+        "w": 4,
+        "x": 4,
+        "y": 16
+      },
+      "id": 1,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "area",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "textMode": "auto"
+      },
+      "pluginVersion": "9.5.3",
+      "targets": [
+        {
+          "datasource": {
+            "type": "foursquare-clouderamanager-datasource",
+            "uid": "PCBD112296461D5A7"
+          },
+          "refId": "A",
+          "target": "select total_outstanding_requests_across_servers WHERE entityName RLIKE \"zookeeper-[a-z 0-9]*\""
+        }
+      ],
+      "title": "Total Outstanding Requests Across Servers",
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "foursquare-clouderamanager-datasource",
+        "uid": "PCBD112296461D5A7"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              }
+            ]
+          },
+          "unit": "short"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 5,
+        "w": 4,
+        "x": 8,
+        "y": 16
+      },
+      "id": 15,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "area",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "textMode": "auto"
+      },
+      "pluginVersion": "9.5.3",
+      "targets": [
+        {
+          "datasource": {
+            "type": "foursquare-clouderamanager-datasource",
+            "uid": "PCBD112296461D5A7"
+          },
+          "refId": "A",
+          "target": "select fsync_threshold_exceed_rate_across_servers where entityName RLIKE \"zookeeper-[a-z 0-9]*\""
+        }
+      ],
+      "title": "Fsync Threshold Exceed Count Across Servers",
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "foursquare-clouderamanager-datasource",
+        "uid": "PCBD112296461D5A7"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              }
+            ]
+          },
+          "unit": "short"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 5,
+        "w": 6,
+        "x": 12,
+        "y": 16
+      },
+      "id": 14,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "area",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "textMode": "auto"
+      },
+      "pluginVersion": "9.5.3",
+      "targets": [
+        {
+          "datasource": {
+            "type": "foursquare-clouderamanager-datasource",
+            "uid": "PCBD112296461D5A7"
+          },
+          "refId": "A",
+          "target": "select total_data_nodes_across_servers where entityName RLIKE \"zookeeper-[a-z 0-9]*\""
+        }
+      ],
+      "title": "Total Data Nodes Across Servers",
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "foursquare-clouderamanager-datasource",
+        "uid": "PCBD112296461D5A7"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              }
+            ]
+          },
+          "unit": "decbytes"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 5,
+        "w": 6,
+        "x": 18,
+        "y": 16
+      },
+      "id": 13,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "area",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "textMode": "auto"
+      },
+      "pluginVersion": "9.5.3",
+      "targets": [
+        {
+          "datasource": {
+            "type": "foursquare-clouderamanager-datasource",
+            "uid": "PCBD112296461D5A7"
+          },
+          "refId": "A",
+          "target": "select total_data_size_across_servers where entityName RLIKE \"zookeeper-[a-z 0-9]*\""
+        }
+      ],
+      "title": "Total Data Size Across Servers",
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "foursquare-clouderamanager-datasource",
+        "uid": "PCBD112296461D5A7"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              }
+            ]
+          },
+          "unit": "pps"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 5,
+        "w": 6,
+        "x": 0,
+        "y": 21
+      },
+      "id": 12,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "area",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "textMode": "auto"
+      },
+      "pluginVersion": "9.5.3",
+      "targets": [
+        {
+          "datasource": {
+            "type": "foursquare-clouderamanager-datasource",
+            "uid": "PCBD112296461D5A7"
+          },
+          "refId": "A",
+          "target": "select total_packets_transmit_rate_across_servers where entityName RLIKE \"zookeeper-[a-z 0-9]*\""
+        }
+      ],
+      "title": "Total Packets Transmitted Across Servers",
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "foursquare-clouderamanager-datasource",
+        "uid": "PCBD112296461D5A7"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              }
+            ]
+          },
+          "unit": "pps"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 5,
+        "w": 6,
+        "x": 6,
+        "y": 21
+      },
+      "id": 11,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "area",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "textMode": "auto"
+      },
+      "pluginVersion": "9.5.3",
+      "targets": [
+        {
+          "datasource": {
+            "type": "foursquare-clouderamanager-datasource",
+            "uid": "PCBD112296461D5A7"
+          },
+          "refId": "A",
+          "target": "select total_packets_receive_rate_across_servers where entityName RLIKE \"zookeeper-[a-z 0-9]*\""
+        }
+      ],
+      "title": "Total Packets Received Across Servers",
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "foursquare-clouderamanager-datasource",
+        "uid": "PCBD112296461D5A7"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          },
+          "unit": "decbytes"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 5,
+        "w": 6,
+        "x": 12,
+        "y": 21
+      },
+      "id": 16,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "area",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "textMode": "auto"
+      },
+      "pluginVersion": "9.5.3",
+      "targets": [
+        {
+          "datasource": {
+            "type": "foursquare-clouderamanager-datasource",
+            "uid": "PCBD112296461D5A7"
+          },
+          "refId": "A",
+          "target": "select last_client_response_size_across_servers where entityName RLIKE \"zookeeper-[a-z 0-9]*\""
+        }
+      ],
+      "title": "Avg Client Response Size Across Servers",
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "foursquare-clouderamanager-datasource",
+        "uid": "PCBD112296461D5A7"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              }
+            ]
+          },
+          "unit": "decbytes"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 5,
+        "w": 6,
+        "x": 18,
+        "y": 21
+      },
+      "id": 17,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "area",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "textMode": "auto"
+      },
+      "pluginVersion": "9.5.3",
+      "targets": [
+        {
+          "datasource": {
+            "type": "foursquare-clouderamanager-datasource",
+            "uid": "PCBD112296461D5A7"
+          },
+          "refId": "A",
+          "target": "select max_client_response_size_across_servers where entityName RLIKE \"zookeeper-[a-z 0-9]*\""
+        }
+      ],
+      "title": "Maximum Client Response Size Across Servers",
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "foursquare-clouderamanager-datasource",
+        "uid": "PCBD112296461D5A7"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              }
+            ]
+          },
+          "unit": "ms"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 5,
+        "w": 8,
+        "x": 4,
+        "y": 26
+      },
+      "id": 9,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "area",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "textMode": "auto"
+      },
+      "pluginVersion": "9.5.3",
+      "targets": [
+        {
+          "datasource": {
+            "type": "foursquare-clouderamanager-datasource",
+            "uid": "PCBD112296461D5A7"
+          },
+          "refId": "A",
+          "target": "select average_request_latency_across_servers where entityName RLIKE \"zookeeper-[a-z 0-9]*\""
+        }
+      ],
+      "title": "Average Request Latency Across Servers",
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "foursquare-clouderamanager-datasource",
+        "uid": "PCBD112296461D5A7"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              }
+            ]
+          },
+          "unit": "ms"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 5,
+        "w": 9,
+        "x": 12,
+        "y": 26
+      },
+      "id": 10,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "area",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "textMode": "auto"
+      },
+      "pluginVersion": "9.5.3",
+      "targets": [
+        {
+          "datasource": {
+            "type": "foursquare-clouderamanager-datasource",
+            "uid": "PCBD112296461D5A7"
+          },
+          "refId": "A",
+          "target": "select max_request_latency_across_servers where entityName RLIKE \"zookeeper-[a-z 0-9]*\""
+        }
+      ],
+      "title": "Maximum Request Latency Across Servers",
+      "type": "stat"
+    }
+  ],
+  "refresh": "30m",
+  "schemaVersion": 38,
+  "style": "dark",
+  "tags": [],
+  "templating": {
+    "list": []
+  },
+  "time": {
+    "from": "now-30m",
+    "to": "now"
+  },
+  "timepicker": {},
+  "timezone": "",
+  "title": "Zookeeper",
+  "uid": "ba11b904-55a7-4e5a-a855-9387e94b7abf",
+  "version": 2,
+  "weekStart": ""
+}
