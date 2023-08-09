@@ -1,19 +1,21 @@
-## Grafana Dashboards
-This repository contains dashboard files for COD Grafana instances to be consumed. Bydefault when COD instances are created, enabling Grafana, these files are automatically installed by the installation scripts and Grafana Dashboards will be ready for use.
+# Cloudera Data Platform Operational Database (COD) Grafana Dashboards
+This repository contains dashboard files for COD Grafana instances to be consumed. When COD instances are created with the Grafana feature enabled these Grafana dashboards are automatically installed.
 
-## Pre Requisites for manual installation steps
-> **_NOTE:_** If you have already enabled grafana as part of the COD creation process, you may not need to follow the pre requisites. But these dashboard files will only work on the below plugins so it is good to verify.
+## Prerequisite for manual installation steps
+When installing Grafana dashboards manually, verify the following Grafana plugins exist.
 
-1. CM foursquare plugin should be installed and configured [https://grafana.com/grafana/plugins/foursquare-clouderamanager-datasource/]
-2. If you want to install AWS S3 dasboard then Cloudwatch plugin should be configured.
+1. Install the [CM foursquare plugin](https://grafana.com/grafana/plugins/foursquare-clouderamanager-datasource/) in the Grafana instance.
+2. Install the Cloudwatch plugin in the Grafana instance to enable AWS S3 dashboards.
 
-## Manual Installaiton Steps
-If you need to install these files manually in your grafana instances then follow the below steps
+> **_NOTE:_** If you have already enabled Grafana as part of the COD creation process, you may not need to follow the prerequisite requisites.
 
-1. Download the json files in your local computer
-2. Open your Grafana portal and goto Dashboard page.
-3. Choose your folder where you want to install the dasboards.
-4. Click New and select Import in the dropdown menu.
+## Manual Installation Steps
+Follow these steps for manual installation of the COD dashboards to your Grafana instance.
+
+1. Download the dashboard json files in your local computer.
+2. Open your Grafana portal and go to Dashboard page.
+3. Choose your folder where you want to install the dashboards.
+4. Click New and select Import in the drop down menu.
 5. Upload the dashboard JSON files you have downloaded earlier one by one.
 6. After uploading the files you can see the dashboards have created in your chosen folder.
-7. You can select one of them to see the graphs.
+7. Select one of them to see the graphs.
