@@ -2,7 +2,7 @@
 This repository contains dashboard files for COD Grafana instances to be consumed. Bydefault when COD instances are created, enabling Grafana, these files are automatically installed by the installation scripts and Grafana Dashboards will be ready for use.
 
 ## Pre Requisites for manual installation steps
-> **_NOTE:_** If you have already enabled grafana as part of the COD creation process, you might not need to follow the pre requisites. But these dashboard files will only work on the below plugins so it is good to verify.
+> **_NOTE:_** If you have already enabled grafana as part of the COD creation process, you may not need to follow the pre requisites. But these dashboard files will only work on the below plugins so it is good to verify.
 
 1. CM foursquare plugin should be installed and configured [https://grafana.com/grafana/plugins/foursquare-clouderamanager-datasource/]
 2. If you want to install AWS S3 dasboard then Cloudwatch plugin should be configured.
