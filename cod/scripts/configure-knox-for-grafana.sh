@@ -18,14 +18,14 @@ host_fqdn=$(hostname --fqdn)
 service_xml_str=$(cat <<-END
 <service role="GRAFANA" name="grafana" version="1.0.0">
   <metadata>
-     <context>/../../grafana/dashboards</context>
+     <context>/../../grafanacod/dashboards</context>
      <description>Grafana</description>
      <shortDesc>GRAFANA</shortDesc>
      <type>UI</type>
   </metadata>
   <routes>
-    <route path="/grafana/"></route>
-    <route path="/grafana/**">
+    <route path="/grafanacod/"></route>
+    <route path="/grafanacod/**">
     </route>
   </routes>
   <dispatch classname="org.apache.knox.gateway.dispatch.HeaderPreAuthFederationDispatch" />
@@ -35,10 +35,10 @@ END
 
 rewrite_xml_str=$(cat <<-END
 <rules>
-  <rule dir="IN" name="GRAFANA/grafana/root" pattern="*://*:*/**/grafana/">
+  <rule dir="IN" name="GRAFANA/grafanacod/root" pattern="*://*:*/**/grafanacod/">
     <rewrite template="{\$serviceUrl[GRAFANA]}/"/>
   </rule>
-  <rule dir="IN" name="GRAFANA/grafana/inbound" pattern="*://*:*/**/grafana/{path=**}?{**}">
+  <rule dir="IN" name="GRAFANA/grafanacod/inbound" pattern="*://*:*/**/grafanacod/{path=**}?{**}">
     <rewrite template="{\$serviceUrl[GRAFANA]}/{path=**}?{**}"/>
   </rule>
 </rules>

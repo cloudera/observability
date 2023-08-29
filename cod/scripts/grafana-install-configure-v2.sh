@@ -90,7 +90,7 @@ dashboard_dir="$grafana_dir/dashboards"
 gr_conf_str=$(cat <<-END
 [server]
 protocol = http
-root_url = %(protocol)s://$host_fqdn:3000/grafana
+root_url = %(protocol)s://$host_fqdn:3000/grafanacod
 [users]
 allow_sign_up = true
 auto_assign_org_role = Editor
