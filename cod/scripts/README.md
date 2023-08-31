@@ -37,16 +37,21 @@ e.g,
 `chown root:root *`
 
 5. Below is the example of permission expected
-`ls -lrt
+
+`ls -lrt`
+
+```
 -rwxr-x---. 1 root root 3874 Aug 22 10:47 configure-knox-for-grafana.sh
 -rwxr-x---. 1 root root 4066 Aug 22 10:47 grafana-install-configure-v2.sh`
+```
+
 
 6. Run the grafana installation script
 e.g,
-`./grafana-install-configure-v2.sh
+`./grafana-install-configure-v2.sh`
 
 Expected Output like below,
-Note: the output is truncated as it is pretty big, if it is successful you must see the symlink created msg
+```ecmascript 6
 extracted string: cod--186yjxqvwcwoh
 Failed to set locale, defaulting to C
 Loaded plugins: fastestmirror, versionlock
@@ -64,32 +69,36 @@ epel/x86_64/metalink                                                            
 
 …
 
-Created symlink from /etc/systemd/system/multi-user.target.wants/grafana-server.service to /usr/lib/systemd/system/grafana-server.service. `
+Created symlink from /etc/systemd/system/multi-user.target.wants/grafana-server.service to /usr/lib/systemd/system/grafana-server.service. 
+```
+Note: the output is truncated as it is pretty big, if it is successful you must see the symlink created msg
+
 
 7. If the above step completed successfully, you will be able to see the grafana service status though systemctl command
 e.g,
-`systemctl status grafana-server.service
+`systemctl status grafana-server.service`
 
 Output of this command should be as below
-
+```ecmascript 6
 ● grafana-server.service - Grafana instance
 Loaded: loaded (/usr/lib/systemd/system/grafana-server.service; enabled; vendor preset: disabled)
 Active: active (running) since Tue 2023-08-22 10:51:08 UTC; 16s ago
 Docs: http://docs.grafana.org
 Main PID: 25273 (grafana)
 CGroup: /system.slice/grafana-server.service
-└─25273 /usr/share/grafana/bin/grafana server --config=/etc/grafana/grafana.ini --pidfile=/var/run/grafana/grafana-server.pid --packaging=rpm cfg:default.paths.logs=/var/log/gr...`
-
+└─25273 /usr/share/grafana/bin/grafana server --config=/etc/grafana/grafana.ini --pidfile=/var/run/grafana/grafana-server.pid --packaging=rpm cfg:default.paths.logs=/var/log/gr...
+```
 
 8. Run the knox configuration script
 e.g,
-`./configure-knox-for-grafana.sh
+`./configure-knox-for-grafana.sh`
 
 Output of the above command should be as below
-
+```ecmascript 6
 Installing knox service configs for grafana
 Adding GRAFANA service in the cdp-proxy topology
-Adding GRAFANA service in the cdp-proxy topology in the active directory`
+Adding GRAFANA service in the cdp-proxy topology in the active directory
+```
 
 9. Restart the knox service from CM and wait for few minutes [5-10 minutes] before you access grafana dashboard
 10. Grafana dashboard url can be formed like below
