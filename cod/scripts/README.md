@@ -20,23 +20,25 @@ This repository contains scripts for COD to install Grafana manually.
 ## Manual Installation Steps
 1. scp two Files grafana-install-configure-v2.sh and configure-knox-for-grafana.sh to the gateway node of the COD cluster.
 e.g,
-`scp -i ~/.ssh/odx-developers.pem ./grafana-install-configure-v2.sh cloudbreak@10.80.192.182:
-scp -i ~/.ssh/odx-developers.pem ./configure-knox-for-grafana.sh cloudbreak@10.80.192.182:`
+```
+scp -i ~/.ssh/odx-developers.pem ./grafana-install-configure-v2.sh cloudbreak@10.80.192.182:
+scp -i ~/.ssh/odx-developers.pem ./configure-knox-for-grafana.sh cloudbreak@10.80.192.182:
+```
 
-2. ssh to gateway node
+3. ssh to gateway node
 e.g,
 `ssh -i ~/.ssh/odx-developers.pem cloudbreak@10.80.201.52`
 
-3. Run sudo to get root permission and go to the folder where you transferred the script files
+4. Run sudo to get root permission and go to the folder where you transferred the script files
 e.g,
-`sudo -i
-cd /home/cloudbreak/`
+`sudo -i`
+`cd /home/cloudbreak/`
 
-4. Set the proper permission and owner of the script files so that it can run successfully
+5. Set the proper permission and owner of the script files so that it can run successfully
 e.g,
 `chown root:root *`
 
-5. Below is the example of permission expected
+6. Below is the example of permission expected
 
 `ls -lrt`
 
