@@ -1,24 +1,24 @@
 # Cloudera Data Platform Operational Database (COD) Grafana Scripts
 This repository contains scripts for COD to install Grafana manually.
 
-## Ensure to consider the following aspects while enabling Grafana for COD:
+## Consider the following when enabling Grafana for COD
 
 1. Grafana server upgrade: COD focuses on utilizing the existing version to meet the requirements and the upgrade of the Grafana server is not within the scope of this solution.
-2. Manual dashboard updates: You must explicitly download the updated dashboards from the Cloudera Public repository. This allows flexibility and ensures you have the most up-to-date dashboard versions whenever necessary.
+2. Manual dashboard updates: You must explicitly download the updated dashboards from the [Cloudera github observability repository](https://github.com/cloudera/observability/tree/main/cod/dashboards). This allows flexibility and ensures you have the most up-to-date dashboard versions whenever necessary.
 3. OS support: The existing solution works on Red Hat, CentOS, RHEL, and Fedora OS because of an RPM-based installation. That is why COD does not allow you to install Grafana with custom images having different OS.
 4. Data Lake metrics support: COD does not include the Data Lake metrics in this solution. Only individual COD (Data Hub) metrics appear in the Grafana dashboard.
 5. HA Knox support: Currently, COD only supports a single Gateway host with a single Knox Gateway.
 6. Foursquare plugin support: The Cloudera Manager foursquare datasource plugin does not support sending alerts. That is why alerts cannot be created on HBase, HDFS, and ZooKeeper dashboard panels.
 
 ## Before you begin
-1. Your cluster must have access to the Cloudera repository (this repo) so that the dashboards are created automatically.
+1. Your cluster must have access to the [Cloudera github observability repository](https://github.com/cloudera/observability/tree/main/cod/dashboards) so that the dashboards are created automatically.
 2. Your cluster must have access to dl.grafana.com so that Grafana is installed successfully.
 3. You need to have the root access to execute scripts.
 4. Keep Backup of /opt/cloudera/parcels/CDH/lib/knox/data/services, /var/lib/knox/gateway/data/services and /srv/salt/gateway/config/cm folders
 
 
 ## Manual Installation Steps
-1. scp two Files grafana-install-configure-v2.sh and configure-knox-for-grafana.sh to the gateway node of the COD cluster.
+1. scp two Files `grafana-install-configure-v2.sh` and `configure-knox-for-grafana.sh` to the gateway node of the COD cluster.
 e.g,
 ```
 scp -i ~/.ssh/odx-developers.pem ./grafana-install-configure-v2.sh cloudbreak@10.80.192.182:
@@ -91,7 +91,7 @@ CGroup: /system.slice/grafana-server.service
 └─25273 /usr/share/grafana/bin/grafana server --config=/etc/grafana/grafana.ini --pidfile=/var/run/grafana/grafana-server.pid --packaging=rpm cfg:default.paths.logs=/var/log/gr...
 ```
 
-8. Run the knox configuration script
+8. Run the Knox configuration script
 e.g,
 `./configure-knox-for-grafana.sh`
 
@@ -102,19 +102,18 @@ Adding GRAFANA service in the cdp-proxy topology
 Adding GRAFANA service in the cdp-proxy topology in the active directory
 ```
 
-9. Restart the knox service from CM and wait for few minutes [5-10 minutes] before you access grafana dashboard
+9. Restart the Knox service from CM and wait for few minutes [5-10 minutes] before you access grafana dashboard
 10. Grafana dashboard url can be formed like below
 `https://<GATEWAY-FQDN>/grafanacod/dashboards`
 Here value of GATEWAY-FQDN can be obtained from COD DATAHUB > Nodes > Gateway
 In the listed table you can find the FQDN column
-e.g,
-`https://cod--186yjxqvwcwoh-gateway0.cod-7216.xcu2-8y8x.dev.cldr.work/grafanacod/dashboards`
+e.g. `https://cod--186yjxqvwcwoh-gateway0.cod-7216.xcu2-8y8x.dev.cldr.work/grafanacod/dashboards`
 
 
 ## Importing a New Dashboard
-By default, the scripts will install HBase, HDFS and Zookeeper dashboard. If you want to install additional dashboard like S3[Only for AWS environment], you need to perform the following
+By default, the scripts will install HBase, HDFS and Zookeeper dashboard. If you want to install additional dashboard like S3 (only for an AWS environment), you need to perform the following
 
-1. Download the dashboard json files [e.g, S3.json] in your local computer from [Cloudera Repo](../dashboards)
+1. Download the dashboard json files [e.g, S3.json] in your local computer from the [Cloudera github observability repository](https://github.com/cloudera/observability/tree/main/cod/dashboards)
 2. Open your Grafana portal and go to the Dashboard page.
 3. Choose your folder where you want to install the dashboards. [e.g, Cloudera]
 4. Click New and select Import in the drop-down menu.
