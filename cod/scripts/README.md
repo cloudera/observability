@@ -4,9 +4,9 @@ This repository contains scripts for COD to install Grafana manually.
 ## Consider the following when enabling Grafana for COD
 
 1. Grafana server upgrade: COD focuses on utilizing the existing version to meet the requirements and the upgrade of the Grafana server is not within the scope of this solution.
-2. Manual dashboard updates: You must explicitly download the updated dashboards from the [Cloudera github observability repository](https://github.com/cloudera/observability/tree/main/cod/dashboards). This allows flexibility and ensures you have the most up-to-date dashboard versions whenever necessary.
-3. OS support: The existing solution works on Red Hat, CentOS, RHEL, and Fedora OS because of an RPM-based installation. That is why COD does not allow you to install Grafana with custom images having different OS.
-4. Data Lake metrics support: COD does not include the Data Lake metrics in this solution. Only individual COD (Data Hub) metrics appear in the Grafana dashboard.
+2. Manual dashboard updates: You must explicitly download the updated dashboards from the [Cloudera github observability repository](https://github.com/cloudera/observability/tree/main/cod/dashboards). This allows ensures you have the most up-to-date dashboard versions whenever necessary.
+3. OS support: The existing solution works on Red Hat, CentOS, RHEL, and Fedora OS because of an RPM-based installation. That is why COD does not allow you to install Grafana with custom images using a different OS.
+4. Data Lake metrics support: COD does not include the Data Lake metrics in this solution. Only individual COD (Data Hub) metrics appear in the Grafana dashboards.
 5. HA Knox support: Currently, COD only supports a single Gateway host with a single Knox Gateway.
 6. Foursquare plugin support: The Cloudera Manager foursquare datasource plugin does not support sending alerts. That is why alerts cannot be created on HBase, HDFS, and ZooKeeper dashboard panels.
 
@@ -25,7 +25,7 @@ scp -i ~/.ssh/odx-developers.pem ./grafana-install-configure-v2.sh cloudbreak@10
 scp -i ~/.ssh/odx-developers.pem ./configure-knox-for-grafana.sh cloudbreak@10.80.192.182:
 ```
 
-3. ssh to gateway node
+3. Connect to the gateway node using ssh
 e.g,
 `ssh -i ~/.ssh/odx-developers.pem cloudbreak@10.80.201.52`
 
@@ -48,11 +48,11 @@ e.g,
 ```
 
 
-6. Run the grafana installation script
+6. Run the Grafana installation script
 e.g,
 `./grafana-install-configure-v2.sh`
 
-Expected Output like below,
+Expect similar to this,
 ```ecmascript 6
 extracted string: cod--186yjxqvwcwoh
 Failed to set locale, defaulting to C
@@ -73,10 +73,10 @@ epel/x86_64/metalink                                                            
 
 Created symlink from /etc/systemd/system/multi-user.target.wants/grafana-server.service to /usr/lib/systemd/system/grafana-server.service. 
 ```
-Note: the output is truncated as it is pretty big, if it is successful you must see the symlink created msg
+Note: the output is truncated, if it is successful you must see the symlink created message
 
 
-7. If the above step completed successfully, you will be able to see the grafana service status though systemctl command
+7. If the above step completed successfully, you will be able to see the Grafana service status though systemctl command
 e.g,
 `systemctl status grafana-server.service`
 
@@ -103,7 +103,7 @@ Adding GRAFANA service in the cdp-proxy topology in the active directory
 ```
 
 9. Restart the Knox service from CM and wait for few minutes [5-10 minutes] before you access grafana dashboard
-10. Grafana dashboard url can be formed like below
+10. The Grafana dashboard URL should be like this
 `https://<GATEWAY-FQDN>/grafanacod/dashboards`
 Here value of GATEWAY-FQDN can be obtained from COD DATAHUB > Nodes > Gateway
 In the listed table you can find the FQDN column
