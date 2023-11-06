@@ -148,7 +148,7 @@ install_grafana() {
         ;;
     esac
     majorVersion=$(echo "$dist_version" | cut -f1 -d.)
-    echo "$lsb_dist" "$majorVersion"
+    echo "We got lsb-dist: $lsb_dist and major-version: $majorVersion"
 
     if [ "$lsb_dist" == "rhel" ] && [ "$majorVersion" == "8" ]; then
         echo "installing for RHEL 8"
@@ -159,7 +159,7 @@ install_grafana() {
         yum install grafana -y https://dl.grafana.com/oss/release/grafana-9.5.3-1.x86_64.rpm || echo "ERROR: Failed to install grafana."
         rm -f /etc/yum.repos.d/${REPO_FILE}
     else
-        echo "installing for RHEL <8"
+        echo "installing for $lsb_dist $majorVersion"
         yum install grafana -y https://dl.grafana.com/oss/release/grafana-9.5.3-1.x86_64.rpm || echo "ERROR: Failed to install grafana."
     fi
 
