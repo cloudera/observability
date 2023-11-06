@@ -124,7 +124,49 @@ providers:
 END
 )
 
-yum install grafana -y https://dl.grafana.com/oss/release/grafana-9.5.3-1.x86_64.rpm || echo "ERROR: Failed to install grafana."
+get_distribution() {
+     lsb_dist=""
+     # Every system that we officially support has /etc/os-release
+     if [ -r /etc/os-release ]; then
+         lsb_dist="$(. /etc/os-release && echo "$ID")"
+     fi
+     # Returning an empty string here should be alright since the
+     # case statements don't act unless you provide an actual value
+     echo "$lsb_dist"
+}
+
+install_grafana() {
+    # perform some very rudimentary platform detection
+    lsb_dist=$( get_distribution )
+    lsb_dist="$(echo "$lsb_dist" | tr '[:upper:]' '[:lower:]')"
+    dist_version=""
+    case "$lsb_dist" in
+        centos|rhel|sles)
+            if [ -z "$dist_version" ] && [ -r /etc/os-release ]; then
+                dist_version="$(. /etc/os-release && echo "$VERSION_ID")"
+            fi
+        ;;
+    esac
+    majorVersion=$(echo "$dist_version" | cut -f1 -d.)
+    echo "$lsb_dist" "$majorVersion"
+
+    if [ "$lsb_dist" == "rhel" ] && [ "$majorVersion" == "8" ]; then
+        echo "installing for RHEL 8"
+        RHEL_VERSION=$(cat /etc/redhat-release | grep -oP "[0-9\.]*")
+        RHEL_VERSION=${RHEL_VERSION/.0/}
+        REPO_FILE=rhel${RHEL_VERSION}_cldr_mirrors.repo
+        curl https://mirror.infra.cloudera.com/repos/rhel/server/8/${RHEL_VERSION}/${REPO_FILE} > /etc/yum.repos.d/${REPO_FILE}
+        yum install grafana -y https://dl.grafana.com/oss/release/grafana-9.5.3-1.x86_64.rpm || echo "ERROR: Failed to install grafana."
+        rm -f /etc/yum.repos.d/${REPO_FILE}
+    else
+        echo "installing for RHEL <8"
+        yum install grafana -y https://dl.grafana.com/oss/release/grafana-9.5.3-1.x86_64.rpm || echo "ERROR: Failed to install grafana."
+    fi
+
+}
+
+install_grafana
+
 grafana-cli --pluginsDir "$plugins_dir" plugins install foursquare-clouderamanager-datasource || echo "ERROR: Failed to install cm plugin on grafana."
 mv $conf_dir/grafana.ini $conf_dir/grafana.ini_backup
 
