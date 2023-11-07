@@ -18,7 +18,7 @@ This repository contains scripts for COD to install Grafana manually.
 
 
 ## Manual Installation Steps
-1. scp two Files `grafana-install-configure-v2.sh` and `configure-knox-for-grafana.sh` to the gateway node of the COD cluster.
+1. scp two Files `grafana-install-configure-v2.sh` and `configure-knox-for-grafana.sh` [if you are using CDH version 7.2.15 then download `configure-knox-for-grafana7215.sh`] to the gateway node of the COD cluster.
 e.g,
 ```
 scp -i ~/.ssh/odx-developers.pem ./grafana-install-configure-v2.sh cloudbreak@10.80.192.182:
@@ -95,7 +95,9 @@ CGroup: /system.slice/grafana-server.service
 e.g,
 `./configure-knox-for-grafana.sh`
 
-Output of the above command should be as below
+Note: In case you are using CDH version 7.2.15 then please use `./configure-knox-for-grafana7215.sh`
+
+Output of the above command should be similar to
 ```ecmascript 6
 Installing knox service configs for grafana
 Adding GRAFANA service in the cdp-proxy topology
