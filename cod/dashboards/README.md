@@ -1,5 +1,5 @@
 # Cloudera Data Platform Operational Database (COD) Grafana Dashboards
-This repository contains dashboard files for COD Grafana instances to be consumed. When COD instances are created with the Grafana feature enabled these Grafana dashboards are automatically installed.
+This repository contains dashboard files for COD Grafana. When a COD cluster is created with the Grafana feature enabled these Grafana dashboards are automatically installed. The instructions on how to install a COD cluster with Grafana and examples of the Grafana dashboards are available in the [Enabling Grafana dashboard in COD](https://docs.cloudera.com/operational-database/cloud/managing-database/topics/cod-monitor-metrics-grafana.html) documentation.
 
 ## Prerequisite for manual installation steps
 When installing Grafana dashboards manually, verify the following Grafana plugins exist.
